@@ -2,9 +2,13 @@
 <html lang="id">
 
 <head>
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-style.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS:wght@100..400&display=swap" rel="stylesheet">
 
     <title>Halaman Utama - Selamat Datang!</title>
 
@@ -24,7 +28,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul nclass="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
@@ -48,7 +52,7 @@
         {{-- Hero Section / Jumbotron --}}
         <div class="p-5 mb-4 bg-light rounded-3 text-center">
             <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">{{ $username }}</h1>
+                <h1 class="display-5 fw-bold font-custom">{{ $username }}</h1>
                 <p class="fs-4 col-md-8 mx-auto">{{ $last_login }}</p>
                 <a href="#" class="btn btn-primary btn-lg mt-3">Pelajari Lebih Lanjut</a>
             </div>
@@ -56,15 +60,16 @@
 
         {{-- Features Section --}}
         <div class="row text-center">
-            <h2 class="mb-4">Fitur Unggulan Kami</h2>
+            <h2 class="mb-4 font-custom">Fitur Unggulan Kami</h2>
 
             {{-- Fitur 1 --}}
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Desain Modern</h5>
+                        <h5 class="card-title font-custom">Desain Modern</h5>
                         <p class="card-text">Dibangun dengan Bootstrap 5 untuk memastikan tampilan yang bersih dan
                             responsif di semua perangkat.</p>
+                            <img src="{{ asset('assets/images/nct.jpg') }}" alt="Logo">
                     </div>
                 </div>
             </div>
@@ -82,6 +87,11 @@
                                             <li>{{ $error }}</li>
                                         @endforeach
                                     </ul>
+                                </div>
+                            @endif
+                            @if (session('info'))
+                                <div class="alert alert-info">
+                                    {!! session('info') !!}
                                 </div>
                             @endif
                             <form action="{{ route('question.store') }}" method="POST">
@@ -113,9 +123,9 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Mudah Dikustomisasi</h5>
-                        <p class="card-text">Kode yang rapi dan terstruktur, memudahkan Anda untuk mengubah konten
-                            sesuai kebutuhan proyek.</p>
+                        <h5 class="card-title">my baby honey sweetie handsome uul</h5>
+                        <p class="card-text">ini pacar gwej</p>
+                            <img src="{{ asset('assets/images/bb.jpg') }}" alt="Logo" style="width: 65%">
                     </div>
                 </div>
             </div>

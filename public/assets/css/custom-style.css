@@ -1,0 +1,13 @@
+.navbar-logo {
+    height: 40px;
+    width: auto;
+}
+
+@font-face {
+    font-family: 'valen';
+    src: url('../fonts/valen.ttf'));
+}
+
+.font-custom{
+    font-family: 'valen';
+}
