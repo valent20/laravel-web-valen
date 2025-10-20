@@ -9,20 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('cache', function (Blueprint $table) {
-            $table->string('key')->primary();
-            $table->mediumText('value');
-            $table->integer('expiration');
-        });
-
-        Schema::create('cache_locks', function (Blueprint $table) {
-            $table->string('key')->primary();
-            $table->string('owner');
-            $table->integer('expiration');
-        });
-    }
+    public function up()
+{
+    Schema::create('pelanggan', function (Blueprint $table) {
+        $table->increments('pelanggan_id');
+        $table->string('first_name', 100);
+        $table->string('last_name', 100);
+        $table->date('birthday')->nullable();
+        $table->enum('gender', ['Male', 'Female', 'Other'])->nullable();
+        $table->string('email')->unique();
+        $table->string('phone', 20)->nullable();
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
