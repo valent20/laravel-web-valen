@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
@@ -30,11 +31,11 @@ class PelangganController extends Controller
     {
         // dd($request->all()) ;
         $data['first_name'] = $request->first_name;
-        $data['last_name']  = $request->last_name;
-        $data['birthday']   = $request->birthday;
-        $data['gender']     = $request->gender;
-        $data['email']      = $request->email;
-        $data['phone']      = $request->phone;
+        $data['last_name'] = $request->last_name;
+        $data['birthday'] = $request->birthday;
+        $data['gender'] = $request->gender;
+        $data['email'] = $request->email;
+        $data['phone'] = $request->phone;
 
         Pelanggan::create($data);
 
@@ -54,7 +55,11 @@ class PelangganController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // === FUNGSI EDIT YANG BENAR ===
+        // Nama variabelnya 'dataPelanggan', disamakan dengan view kamu
+        $data['dataPelanggan'] = Pelanggan::findOrFail($id);
+
+        return view('admin.pelanggan.edit', $data);
     }
 
     /**
@@ -62,7 +67,24 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // === FUNGSI UPDATE YANG BENAR ===
+
+        // 1. Cari data pelanggan yang mau di-update
+        $pelanggan = Pelanggan::findOrFail($id);
+
+        // 2. Siapkan data baru dari form
+        $data['first_name'] = $request->first_name;
+        $data['last_name']  = $request->last_name;
+        $data['birthday']   = $request->birthday;
+        $data['gender']     = $request->gender;
+        $data['email']      = $request->email;
+        $data['phone']      = $request->phone;
+
+        // 3. Update data di database
+        $pelanggan->update($data);
+
+        // 4. Redirect kembali ke halaman index
+        return redirect()->route('pelanggan.index')->with('success', 'Data pelanggan berhasil diperbarui!');
     }
 
     /**
@@ -70,6 +92,11 @@ class PelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pelanggan = \App\Models\Pelanggan::findOrFail($id);
+
+        $pelanggan->delete();
+
+        return redirect()->route('pelanggan.index')
+            ->with('success', 'Data pelanggan berhasil dihapus.');
     }
 }

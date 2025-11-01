@@ -1,5 +1,5 @@
-@extends('admin.template')
-@section('title', 'Tambah Pelanggan')
+@extends('admin.layouts.app') {{-- Menyesuaikan dengan index.blade.php kamu --}}
+@section('title', 'Edit Pelanggan') {{-- Judul diubah --}}
 @section('content')
 
     <div class="py-4">
@@ -15,17 +15,18 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tambah Pelanggan</li>
+                {{-- Link breadcrumb diperbaiki --}}
+                <li class="breadcrumb-item"><a href="{{ route('pelanggan.index') }}">Pelanggan</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Pelanggan</li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
-                <h1 class="h4">Tambah Pelanggan</h1>
-                <p class="mb-0">Form untuk menambahkan data pelanggan baru.</p>
+                <h1 class="h4">Edit Pelanggan</h1> {{-- Judul diubah --}}
+                <p class="mb-0">Form untuk mengubah data pelanggan.</p> {{-- Deskripsi diubah --}}
             </div>
             <div>
-                <a href="{{ route('pelanggan.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
+                <a href="{{ route('pelanggan.index') }}" class="btn btn-outline-gray-600"><i class="far fa-undo me-1"></i>
                     Kembali</a>
             </div>
         </div>
@@ -35,6 +36,7 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
                 <div class="card-body">
+                    {{-- Pastikan primary key kamu 'pelanggan_id' --}}
                     <form action="{{ route('pelanggan.update', $dataPelanggan->pelanggan_id) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -64,9 +66,11 @@
                                 </div>
 
                                 <!-- Gender -->
+                                {{-- Label ditambahkan --}}
+                                <label for="gender" class="form-label">Gender</label>
                                 <select class="form-select mb-0" id="gender" name="gender"
                                     aria-label="Gender select example">
-                                    <option selected>Gender</option>
+                                    {{-- Opsi "Gender" yang 'selected' dihapus --}}
                                     <option value="Female" {{ $dataPelanggan->gender == 'Female' ? 'selected' : '' }}>Female
                                     </option>
                                     <option value="Male" {{ $dataPelanggan->gender == 'Male' ? 'selected' : '' }}>Male
@@ -92,7 +96,7 @@
 
                                 <!-- Buttons -->
                                 <div class="">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                     <a href="{{ route('pelanggan.index') }}"
                                         class="btn btn-outline-secondary ms-2">Batal</a>
                                 </div>
